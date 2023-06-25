@@ -1,4 +1,5 @@
 #!/bin/bash
+# this script create a custom logging function
 
 VERBOSE=false
 HOST="google.com"
