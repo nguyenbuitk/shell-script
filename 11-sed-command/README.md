@@ -59,7 +59,6 @@ echo '/home/jason' | sed 's?/home/jason?/export/user/jasonc?'
 
 ```
 
-
 # REMOVE OR DELETE COMMAND WITH SED
 ```bash
 cat love.txt
@@ -117,17 +116,54 @@ sed -f script.sed config
 # Group httpd
 
 ```
+
 # Use address to work on range of line
 ```bash
-Address được sử dụng nhằm chỉ định sed được thực hiện trên line nào, default là thực hiện trên toàn bộ line
+# Address được sử dụng nhằm chỉ định sed được thực hiện trên line nào, default là thực hiện trên toàn bộ line
 sed '2 s/apache/httpd/' config # chỉ thay đổi dòng 2
 sed '2s/apache/httpd/' config
-<!-- # User to run service as.
-User httpd
+# # User to run service as.
+# User httpd
 
-# Group to run service as.
-Group apache -->
+# # Group to run service as.
+# Group apache
 
 sed '/Group/ s/apache/httpd/' config # just change the line contain word 'Group'
+sed '1,3 s/run/execute/' config
+```
+
+# Summary
+```bash
+# Commands:
+sed 's/search-pattern/replacement-string/flags'
+
+# Replace (first apperance) with case sensitive
+sed 's/my wife/sed/' love.txt
+
+# Replace without case sensitive
+sed 's/MY WIFE/sed/i' love.txt
+
+# Replace all apperance in lines
+sed 's/my wife/sed/g' love.txt 
+
+# Output to new file
+sed 's/my wife/sed/g' love.txt > my-new-love.txt 
+
+# Create a backup of origin file and replace the origin file data
+sed -i.bak 's/my wife/sed/' love.txt 
+
+# Sed in pipeline
+## 2 command này giống nhau
+cat like.txt | sed 's/my wife/sed/g'
+sed 's/my wife/sed/g' like.txt
+
+## 2 command này giống nhau
+echo '/home/jason' | sed 's/\/home\/jason/\/export\/user\/jasonc/'
+echo '/home/jason' | sed 's?/home/jason?/export/user/jasonc?'
+
+# Remove line with sed
+sed '/This is/d' love.txt
+
+# Thực hiện sed trên 1 range nhất định (line 1 đến line 3)
 sed '1,3 s/run/execute/' config
 ```
